@@ -1,0 +1,106 @@
+{
+  "generator-jhipster": {
+    "jhipsterVersion": "3.12.2",
+    "baseName": "airline",
+    "packageName": "com.cquent.airline",
+    "packageFolder": "com/cquent/airline",
+    "serverPort": "8080",
+    "authenticationType": "session",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "buildTool": "gradle",
+    "enableSocialSignIn": true,
+    "rememberMeKey": "24d91cfdd3bd23b20d069824f4994c4534348171",
+    "useSass": true,
+    "applicationType": "monolith",
+    "testFrameworks": [
+      "cucumber"
+    ],
+    "jhiPrefix": "jhi",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-vuejs",
+        "version": "0.0.3"
+      },
+      {
+        "name": "generator-jhipster-material",
+        "version": "0.0.0"
+      },
+      {
+        "name": "generator-jhipster-entity-audit",
+        "version": "2.2.2"
+      },
+      {
+        "name": "generator-jhipster-angular-ui",
+        "version": "0.0.2"
+      },
+      {
+        "name": "generator-jhipster-webservice",
+        "version": "0.1.0"
+      },
+      {
+        "name": "generator-jhipster-ionic",
+        "version": "2.1.6"
+      },
+      {
+        "name": "generator-jhipster-google-analytics",
+        "version": "0.0.1"
+      },
+      {
+        "name": "generator-jhipster-darktheme",
+        "version": "0.0.7"
+      },
+      {
+        "name": "generator-jhipster-google-maps",
+        "version": "0.0.1"
+      },
+      {
+        "name": "generator-jhipster-leaflet",
+        "version": "1.0.0"
+      },
+      {
+        "name": "generator-jhipster-bootstrap-material-design",
+        "version": "3.5.1"
+      },
+      {
+        "name": "generator-jhipster-bootswatch",
+        "version": "1.0.2"
+      },
+      {
+        "name": "generator-jhipster-spring-social-connectors",
+        "version": "0.0.1"
+      },
+      {
+        "name": "generator-jhipster-docker",
+        "version": "2.2.0"
+      },
+      {
+        "name": "generator-jhipster-swagger2markup",
+        "version": "1.1.0"
+      },
+      {
+        "name": "generator-jhipster-ci",
+        "version": "1.0.0"
+      },
+      {
+        "name": "generator-jhipster-fortune",
+        "version": "0.0.2"
+      }
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "de",
+      "hi",
+      "mr",
+      "ta"
+    ]
+  }
+}

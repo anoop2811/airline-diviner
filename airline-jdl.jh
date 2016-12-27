@@ -1,0 +1,43 @@
+
+    entity RunStatus {
+      statusCode String required,
+      statusDescription String required
+    }
+
+    entity UserPreference {
+      fromCity String required,
+      toCity String required,
+      departDate LocalDate required,
+      returnDate LocalDate required,
+      currencyId Currency,
+      threshold BigDecimal required,
+      frequency Integer min(3) max(7)
+    }
+
+    entity UserEvents {
+      runDate LocalDate required,
+      fromCity String required,
+      toCity String required,
+      departDate LocalDate required,
+      returnDate LocalDate required
+    }
+
+
+
+    relationship OneToMany {
+      UserPreference{UserEvents} to UserEvents{UserPreference}
+    }
+    relationship OneToMany {
+      RunStatus{UserEvents} to UserEvents{RunStatus}
+    }
+        relationship OneToMany {
+          User{UserPreference} to UserPreference{User}
+        }
+
+    enum Currency {
+      USD, INR
+    }
+
+    paginate UserEvents, UserPreference, RunStatus with pagination
+
+    service UserEvents, UserPreference, RunStatus with serviceClass
