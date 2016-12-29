@@ -1,0 +1,31 @@
+{
+    "airlineApp": {
+        "userPreference" : {
+            "home": {
+                "title": "User Preferences",
+                "createLabel": "नवीन User Preference तयार करा",
+                "createOrEditLabel": "User Preference तयार किंवा संपादित करा",
+                "search": "User Preference शोधा"
+            },
+            "created": "User Preference [identifier: {{ param }}] तयार आहे",
+            "updated": "User Preference [identifier: {{ param }}] सुधारित केले आहे",
+            "deleted": "User Preference [identifier: {{ param }}] हटविले आहे",
+            "delete": {
+                "question": "User Preference [id: {{ id }}] काढून टाकण्याबाबत पुष्टी?"
+            },
+            "detail": {
+                "title": "User Preference"
+            },
+            "fromCity": "From City",
+            "toCity": "To City",
+            "departDate": "Depart Date",
+            "returnDate": "Return Date",
+            "currencyId": "Currency Id",
+            "threshold": "Threshold",
+            "frequency": "Frequency",
+            "nextRunDate": "Next Run Date",
+            "userEventsRelation1": "User Events Relation 1",
+            "user": "User"
+        }
+    }
+}

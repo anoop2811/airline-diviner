@@ -14,6 +14,7 @@ import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -161,5 +162,10 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         h2ConsoleServlet.addMapping("/h2-console/*");
         h2ConsoleServlet.setInitParameter("-properties", "src/main/resources/");
         h2ConsoleServlet.setLoadOnStartup(1);
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

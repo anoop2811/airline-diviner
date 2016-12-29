@@ -1,0 +1,28 @@
+{
+    "airlineApp": {
+        "userEvents" : {
+            "home": {
+                "title": "User Events",
+                "createLabel": "User Events-ஐ உருவாக்கு",
+                "createOrEditLabel": "User Events -ஐ மாற்று (அ) உருவாக்கு",
+                "search": "Search for User Events"
+            },
+            "created": "User Events புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+            "updated": "User Events மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+            "deleted": "A User Events நீக்கப்பட்டது, அடையாளம {{ param }}",
+            "delete": {
+                "question": "நீக்குவதற்கு உறுதி செய் User Events {{ id }}?"
+            },
+            "detail": {
+                "title": "User Events"
+            },
+            "runDate": "Run Date",
+            "fromCity": "From City",
+            "toCity": "To City",
+            "departDate": "Depart Date",
+            "returnDate": "Return Date",
+            "runStatus": "Run Status",
+            "userPreference": "User Preference"
+        }
+    }
+}

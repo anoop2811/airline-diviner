@@ -11,7 +11,8 @@
       returnDate LocalDate required,
       currencyId Currency,
       threshold BigDecimal required,
-      frequency Integer min(3) max(7)
+      frequency Integer min(3) max(7),
+      nextRunDate LocalDate
     }
 
     entity UserEvents {
@@ -23,16 +24,15 @@
     }
 
 
-
-    relationship OneToMany {
-      UserPreference{UserEvents} to UserEvents{UserPreference}
+    relationship ManyToOne {
+      UserPreference{user} to User
     }
     relationship OneToMany {
-      RunStatus{UserEvents} to UserEvents{RunStatus}
+      UserPreference{userEventsRelation1} to UserEvents{userPreference}
     }
-        relationship OneToMany {
-          User{UserPreference} to UserPreference{User}
-        }
+    relationship ManyToOne {
+      UserEvents{RunStatus} to RunStatus
+    }
 
     enum Currency {
       USD, INR

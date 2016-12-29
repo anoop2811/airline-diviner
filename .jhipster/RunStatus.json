@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "statusCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "statusDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20161227184014",
+    "entityTableName": "run_status",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass"
+}

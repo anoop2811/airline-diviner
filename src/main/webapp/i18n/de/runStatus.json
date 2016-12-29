@@ -1,0 +1,23 @@
+{
+    "airlineApp": {
+        "runStatus" : {
+            "home": {
+                "title": "Run Statuses",
+                "createLabel": "Run Status erstellen",
+                "createOrEditLabel": "Run Status erstellen oder bearbeiten",
+                "search": "Suche nach Run Status"
+            },
+            "created": "Run Status erstellt mit ID {{ param }}",
+            "updated": "Run Status aktualisiert mit ID {{ param }}",
+            "deleted": "Run Status gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Run Status {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Run Status"
+            },
+            "statusCode": "Status Code",
+            "statusDescription": "Status Description"
+        }
+    }
+}

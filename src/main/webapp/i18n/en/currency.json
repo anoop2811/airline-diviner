@@ -1,0 +1,9 @@
+{
+    "airlineApp": {
+        "Currency" : {
+            "null": "",
+            "USD": "USD",
+            "INR": "INR"
+        }
+    }
+}

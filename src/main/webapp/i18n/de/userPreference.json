@@ -1,0 +1,31 @@
+{
+    "airlineApp": {
+        "userPreference" : {
+            "home": {
+                "title": "User Preferences",
+                "createLabel": "User Preference erstellen",
+                "createOrEditLabel": "User Preference erstellen oder bearbeiten",
+                "search": "Suche nach User Preference"
+            },
+            "created": "User Preference erstellt mit ID {{ param }}",
+            "updated": "User Preference aktualisiert mit ID {{ param }}",
+            "deleted": "User Preference gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll User Preference {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "User Preference"
+            },
+            "fromCity": "From City",
+            "toCity": "To City",
+            "departDate": "Depart Date",
+            "returnDate": "Return Date",
+            "currencyId": "Currency Id",
+            "threshold": "Threshold",
+            "frequency": "Frequency",
+            "nextRunDate": "Next Run Date",
+            "userEventsRelation1": "User Events Relation 1",
+            "user": "User"
+        }
+    }
+}

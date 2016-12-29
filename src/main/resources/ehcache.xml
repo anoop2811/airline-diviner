@@ -22,5 +22,13 @@
 
     <cache alias="com.cquent.airline.social.SocialUserConnection" uses-template="simple"/>
 
+    <cache alias="com.cquent.airline.domain.RunStatus" uses-template="simple"/>
+
+    <cache alias="com.cquent.airline.domain.UserPreference" uses-template="simple"/>
+
+    <cache alias="com.cquent.airline.domain.UserPreference.userEventsRelation1S" uses-template="simple"/>
+
+    <cache alias="com.cquent.airline.domain.UserEvents" uses-template="simple"/>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>

@@ -1,0 +1,27 @@
+
+<div>
+    <h2><span data-translate="airlineApp.runStatus.detail.title">Run Status</span> {{vm.runStatus.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="airlineApp.runStatus.statusCode">Status Code</span></dt>
+        <dd>
+            <span>{{vm.runStatus.statusCode}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.runStatus.statusDescription">Status Description</span></dt>
+        <dd>
+            <span>{{vm.runStatus.statusDescription}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="run-status-detail.edit({id:vm.runStatus.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

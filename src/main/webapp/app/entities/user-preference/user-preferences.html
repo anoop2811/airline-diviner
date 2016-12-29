@@ -1,0 +1,78 @@
+<div>
+    <h2 data-translate="airlineApp.userPreference.home.title">User Preferences</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="user-preference.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="airlineApp.userPreference.home.createLabel">
+                        Create new User Preference
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fromCity"><span data-translate="airlineApp.userPreference.fromCity">From City</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="toCity"><span data-translate="airlineApp.userPreference.toCity">To City</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="departDate"><span data-translate="airlineApp.userPreference.departDate">Depart Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="returnDate"><span data-translate="airlineApp.userPreference.returnDate">Return Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="currencyId"><span data-translate="airlineApp.userPreference.currencyId">Currency Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="threshold"><span data-translate="airlineApp.userPreference.threshold">Threshold</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="frequency"><span data-translate="airlineApp.userPreference.frequency">Frequency</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nextRunDate"><span data-translate="airlineApp.userPreference.nextRunDate">Next Run Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.id"><span data-translate="airlineApp.userPreference.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="userPreference in vm.userPreferences track by userPreference.id">
+                    <td><a ui-sref="user-preference-detail({id:userPreference.id})">{{userPreference.id}}</a></td>
+                    <td>{{userPreference.fromCity}}</td>
+                    <td>{{userPreference.toCity}}</td>
+                        <td>{{userPreference.departDate | date:'mediumDate'}}</td>
+                        <td>{{userPreference.returnDate | date:'mediumDate'}}</td>
+                    <td data-translate="{{'airlineApp.Currency.' + userPreference.currencyId}}">{{userPreference.currencyId}}</td>
+                    <td>{{userPreference.threshold}}</td>
+                    <td>{{userPreference.frequency}}</td>
+                        <td>{{userPreference.nextRunDate | date:'mediumDate'}}</td>
+                    <td>
+                        {{userPreference.user.id}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="user-preference-detail({id:userPreference.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-preference.edit({id:userPreference.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-preference.delete({id:userPreference.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

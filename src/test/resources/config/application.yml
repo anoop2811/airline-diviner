@@ -81,3 +81,10 @@ jhipster:
         contactEmail:
         license:
         licenseUrl:
+# ===================================================================
+# app specific properties
+# ===================================================================
+iata:
+  resource: http://iatacodes.org/api/v6/
+  api_key:
+

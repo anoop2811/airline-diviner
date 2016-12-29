@@ -1,0 +1,78 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "userEventsRelation1",
+            "otherEntityName": "userEvents",
+            "otherEntityRelationshipName": "userPreference"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fromCity",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "toCity",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "departDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "returnDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "currencyId",
+            "fieldType": "Currency",
+            "fieldValues": "USD,INR"
+        },
+        {
+            "fieldName": "threshold",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "frequency",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 3,
+            "fieldValidateRulesMax": 7
+        },
+        {
+            "fieldName": "nextRunDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20161227184015",
+    "entityTableName": "user_preference",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass"
+}

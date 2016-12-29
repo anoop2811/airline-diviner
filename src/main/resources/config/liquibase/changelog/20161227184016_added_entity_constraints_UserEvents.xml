@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity UserEvents.
+    -->
+    <changeSet id="20161227184016-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="run_status_id"
+                                 baseTableName="user_events"
+                                 constraintName="fk_user_events_run_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="run_status"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_preference_id"
+                                 baseTableName="user_events"
+                                 constraintName="fk_user_events_user_preference_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_preference"/>
+
+    </changeSet>
+</databaseChangeLog>

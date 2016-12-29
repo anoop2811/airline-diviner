@@ -1,0 +1,151 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myUserPreferenceLabel" data-translate="airlineApp.userPreference.home.createOrEditLabel">Create or edit a User Preference</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.userPreference.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.userPreference.id" readonly />
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="airlineApp.userPreference.fromCity" for="field_fromCity">From City</label>-->
+            <!--<input type="text" class="form-control" name="fromCity" id="field_fromCity"-->
+                    <!--ng-model="vm.userPreference.fromCity"-->
+                    <!--required />-->
+            <!--<div ng-show="editForm.fromCity.$invalid">-->
+                <!--<p class="help-block"-->
+                    <!--ng-show="editForm.fromCity.$error.required" data-translate="entity.validation.required">-->
+                    <!--This field is required.-->
+                <!--</p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userPreference.fromCity" for="field_fromCity">From City</label>
+            <select class="form-control" id="field_fromCity" name="fromCity" ng-model="vm.userPreference.fromCity" ng-options="fromCity.code as fromCity.name + '-' + fromCity.country_code for fromCity in vm.airports track by fromCity.code">
+                <option value="">---Please select---</option>
+            </select>
+            <!--<div ng-show="editForm.fromCity.$invalid">-->
+                <!--<p class="help-block"-->
+                   <!--ng-show="editForm.fromCity.$error.required" data-translate="entity.validation.required">-->
+                    <!--This field is required.-->
+                <!--</p>-->
+            <!--</div>-->
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userPreference.toCity" for="field_toCity">To City</label>
+            <select class="form-control" id="field_toCity" name="toCity" ng-model="vm.userPreference.toCity" ng-options="toCity.code as toCity.name + '-' + toCity.country_code for toCity in vm.airports track by toCity.code">
+                <option value="">---Please select---</option>
+            </select>
+            <!--<div ng-show="editForm.toCity.$invalid">-->
+                <!--<p class="help-block"-->
+                   <!--ng-show="editForm.toCity.$error.required" data-translate="entity.validation.required">-->
+                    <!--This field is required.-->
+                <!--</p>-->
+            <!--</div>-->
+        </div>
+
+
+        <!--<div class="form-group">-->
+            <!--<label class="control-label" data-translate="airlineApp.userPreference.toCity" for="field_toCity">To City</label>-->
+            <!--<input type="text" class="form-control" name="toCity" id="field_toCity"-->
+                    <!--ng-model="vm.userPreference.toCity"-->
+                    <!--required />-->
+            <!--<div ng-show="editForm.toCity.$invalid">-->
+                <!--<p class="help-block"-->
+                    <!--ng-show="editForm.toCity.$error.required" data-translate="entity.validation.required">-->
+                    <!--This field is required.-->
+                <!--</p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userPreference.departDate" for="field_departDate">Depart Date</label>
+                <div class="input-group">
+                    <input id="field_departDate" type="text" class="form-control" name="departDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.userPreference.departDate" is-open="vm.datePickerOpenStatus.departDate"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('departDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.departDate.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.departDate.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userPreference.returnDate" for="field_returnDate">Return Date</label>
+                <div class="input-group">
+                    <input id="field_returnDate" type="text" class="form-control" name="returnDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.userPreference.returnDate" is-open="vm.datePickerOpenStatus.returnDate"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('returnDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.returnDate.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.returnDate.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userPreference.currencyId" for="field_currencyId">Currency Id</label>
+            <select class="form-control" name="currencyId" ng-model="vm.userPreference.currencyId" id="field_currencyId">
+                <option value="USD" data-translate="airlineApp.Currency.USD">USD</option>
+                <option value="INR" data-translate="airlineApp.Currency.INR">INR</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userPreference.threshold" for="field_threshold">Threshold</label>
+            <input type="number" class="form-control" name="threshold" id="field_threshold"
+                    ng-model="vm.userPreference.threshold"
+                    required />
+            <div ng-show="editForm.threshold.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.threshold.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.threshold.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userPreference.frequency" for="field_frequency">Frequency</label>
+            <input type="number" class="form-control" name="frequency" id="field_frequency"
+                    ng-model="vm.userPreference.frequency"
+                    min="3" max="7" />
+            <div ng-show="editForm.frequency.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.frequency.$error.min" data-translate="entity.validation.min" translate-value-min="3">
+                    This field should be more than 3.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.frequency.$error.max" data-translate="entity.validation.max" translate-value-max="7">
+                    This field cannot be more than 7.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.frequency.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

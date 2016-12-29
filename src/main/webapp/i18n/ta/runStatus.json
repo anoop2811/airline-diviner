@@ -1,0 +1,23 @@
+{
+    "airlineApp": {
+        "runStatus" : {
+            "home": {
+                "title": "Run Statuses",
+                "createLabel": "Run Status-ஐ உருவாக்கு",
+                "createOrEditLabel": "Run Status -ஐ மாற்று (அ) உருவாக்கு",
+                "search": "Search for Run Status"
+            },
+            "created": "Run Status புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+            "updated": "Run Status மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+            "deleted": "A Run Status நீக்கப்பட்டது, அடையாளம {{ param }}",
+            "delete": {
+                "question": "நீக்குவதற்கு உறுதி செய் Run Status {{ id }}?"
+            },
+            "detail": {
+                "title": "Run Status"
+            },
+            "statusCode": "Status Code",
+            "statusDescription": "Status Description"
+        }
+    }
+}

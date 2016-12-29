@@ -1,0 +1,28 @@
+{
+    "airlineApp": {
+        "userEvents" : {
+            "home": {
+                "title": "User Events",
+                "createLabel": "User Events erstellen",
+                "createOrEditLabel": "User Events erstellen oder bearbeiten",
+                "search": "Suche nach User Events"
+            },
+            "created": "User Events erstellt mit ID {{ param }}",
+            "updated": "User Events aktualisiert mit ID {{ param }}",
+            "deleted": "User Events gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll User Events {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "User Events"
+            },
+            "runDate": "Run Date",
+            "fromCity": "From City",
+            "toCity": "To City",
+            "departDate": "Depart Date",
+            "returnDate": "Return Date",
+            "runStatus": "Run Status",
+            "userPreference": "User Preference"
+        }
+    }
+}

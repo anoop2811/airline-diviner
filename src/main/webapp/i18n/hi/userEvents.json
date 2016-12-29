@@ -1,0 +1,28 @@
+{
+    "airlineApp": {
+        "userEvents" : {
+            "home": {
+                "title": "UserEvents",
+                "createLabel": "नया User Events बनाएँ",
+                "createOrEditLabel": "User Events बनाएँ या संपादित करें",
+                "search": "User Events खोजें"
+            },
+            "created": "एक नया User Events [identifier: {{ param }}] तैयार है",
+            "updated": "एक User Events [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "User Events [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "User Events [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "User Events"
+            },
+            "runDate": "Run Date",
+            "fromCity": "From City",
+            "toCity": "To City",
+            "departDate": "Depart Date",
+            "returnDate": "Return Date",
+            "runStatus": "Run Status",
+            "userPreference": "User Preference"
+        }
+    }
+}

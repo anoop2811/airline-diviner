@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="airlineApp.userPreference.detail.title">User Preference</span> {{vm.userPreference.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="airlineApp.userPreference.fromCity">From City</span></dt>
+        <dd>
+            <span>{{vm.userPreference.fromCity}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userPreference.toCity">To City</span></dt>
+        <dd>
+            <span>{{vm.userPreference.toCity}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userPreference.departDate">Depart Date</span></dt>
+        <dd>
+            <span>{{vm.userPreference.departDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userPreference.returnDate">Return Date</span></dt>
+        <dd>
+            <span>{{vm.userPreference.returnDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userPreference.currencyId">Currency Id</span></dt>
+        <dd>
+            <span data-translate="{{'airlineApp.Currency.' + vm.userPreference.currencyId}}">{{vm.userPreference.currencyId}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userPreference.threshold">Threshold</span></dt>
+        <dd>
+            <span>{{vm.userPreference.threshold}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userPreference.frequency">Frequency</span></dt>
+        <dd>
+            <span>{{vm.userPreference.frequency}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userPreference.user">User</span></dt>
+        <dd>
+            {{vm.userPreference.user.id}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="user-preference-detail.edit({id:vm.userPreference.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
