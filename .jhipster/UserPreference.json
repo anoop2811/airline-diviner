@@ -3,8 +3,8 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "userEventsRelation1",
-            "otherEntityName": "userEvents",
+            "relationshipName": "userEvent",
+            "otherEntityName": "userEvent",
             "otherEntityRelationshipName": "userPreference"
         },
         {

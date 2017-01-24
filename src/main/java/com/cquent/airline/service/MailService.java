@@ -1,23 +1,25 @@
 package com.cquent.airline.service;
 
-import com.cquent.airline.config.JHipsterProperties;
-import com.cquent.airline.domain.User;
+import java.util.Locale;
 
-import org.apache.commons.lang3.CharEncoding;
+import javax.inject.Inject;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.apache.commons.lang3.StringUtils;
 
-import javax.inject.Inject;
-import javax.mail.internet.MimeMessage;
-import java.util.Locale;
+import com.cquent.airline.config.JHipsterProperties;
+import com.cquent.airline.domain.FlightOption;
+import com.cquent.airline.domain.User;
+import com.cquent.airline.domain.UserPreference;
+import com.sendgrid.SendGrid;
 
 /**
  * Service for sending e-mails.
@@ -34,6 +36,10 @@ public class MailService {
 
     private static final String BASE_URL = "baseUrl";
 
+    private static final String FLIGHT_OPTION = "flightOption";
+
+    private static final String USER_PREFERENCE = "userPreference";
+
     @Inject
     private JHipsterProperties jHipsterProperties;
 
@@ -45,6 +51,9 @@ public class MailService {
 
     @Inject
     private SpringTemplateEngine templateEngine;
+    
+    @Autowired(required = false)
+    private SendGrid sendGrid;
 
     @Async
     public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
@@ -52,15 +61,25 @@ public class MailService {
             isMultipart, isHtml, to, subject, content);
 
         // Prepare message using a Spring helper
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
-            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, CharEncoding.UTF_8);
-            message.setTo(to);
+            SendGrid.Email message = new SendGrid.Email();
+            if(to.indexOf(",") > -1) {
+                message.addTo(to.split(","));
+            } else {
+                message.addTo(to);
+            }
             message.setFrom(jHipsterProperties.getMail().getFrom());
             message.setSubject(subject);
-            message.setText(content, isHtml);
-            javaMailSender.send(mimeMessage);
-            log.debug("Sent e-mail to User '{}'", to);
+            if(isHtml) {
+                message.setHtml(content);
+            } else {
+                message.setText(content);
+            }
+            SendGrid.Response response = sendGrid.send(message);
+            System.out.println("====================================================== Finished mail sending");
+            System.out.println("SendGrid response is " + response.getMessage());
+
+            log.debug("Sent e-mail to User '{}' and response is {}", to, response.getMessage());
         } catch (Exception e) {
             log.warn("E-mail could not be sent to user '{}'", to, e);
         }
@@ -111,6 +130,20 @@ public class MailService {
         context.setVariable("provider", StringUtils.capitalize(provider));
         String content = templateEngine.process("socialRegistrationValidationEmail", context);
         String subject = messageSource.getMessage("email.social.registration.title", null, locale);
+        sendEmail(user.getEmail(), subject, content, false, true);
+    }
+
+    @Async
+    public void sendBestFlightEmail(User user, FlightOption flightOption, UserPreference userPreference) {
+        log.debug("Sending best flight option e-mail to '{}'", user.getEmail());
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable(USER, user);
+        context.setVariable(FLIGHT_OPTION, flightOption);
+        context.setVariable(USER_PREFERENCE, userPreference);
+
+        String content = templateEngine.process("bestFlight", context);
+        String subject = messageSource.getMessage("email.bestFlight.title", null, locale);
         sendEmail(user.getEmail(), subject, content, false, true);
     }
 }

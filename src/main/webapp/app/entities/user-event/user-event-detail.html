@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="airlineApp.userEvent.detail.title">User Event</span> {{vm.userEvent.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="airlineApp.userEvent.bestOnwardPath">Best Onward Path</span></dt>
+        <dd>
+            <span>{{vm.userEvent.bestOnwardPath}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userEvent.bestReturnPath">Best Return Path</span></dt>
+        <dd>
+            <span>{{vm.userEvent.bestReturnPath}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userEvent.bestPrice">Best Price</span></dt>
+        <dd>
+            <span>{{vm.userEvent.bestPrice}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userEvent.runDate">Run Date</span></dt>
+        <dd>
+            <span>{{vm.userEvent.runDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userEvent.runStatus">Run Status</span></dt>
+        <dd>
+            <a ui-sref="run-status-detail({id:vm.userEvent.runStatus.id})">{{vm.userEvent.runStatus.id}}</a>
+        </dd>
+        <dt><span data-translate="airlineApp.userEvent.userPreference">User Preference</span></dt>
+        <dd>
+            <a ui-sref="user-preference-detail({id:vm.userEvent.userPreference.id})">{{vm.userEvent.userPreference.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="user-event-detail.edit({id:vm.userEvent.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

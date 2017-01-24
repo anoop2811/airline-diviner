@@ -107,3 +107,7 @@ jhipster:
 iata:
   resource: http://iatacodes.org/api/v6/
   api_key:
+qbx:
+  api_key: ""
+  daily_rate_limit: 50
+  resource: "https://www.googleapis.com/qpxExpress"

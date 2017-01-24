@@ -25,6 +25,7 @@ apply plugin: 'java'
 sourceCompatibility=1.8
 targetCompatibility=1.8
 apply plugin: 'maven'
+apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
 apply plugin: 'propdeps'
@@ -171,9 +172,10 @@ dependencies {
     compile ("com.ryantenney.metrics:metrics-spring:${metrics_spring_version}") {
         exclude(module: 'metrics-core')
         exclude(module: 'metrics-healthchecks')
-    } 
+    }
     compile "javax.cache:cache-api:${jcache_version}"
     compile "org.hibernate:hibernate-core:${hibernate_version}"
+    compile "org.springframework.boot:spring-boot-starter-cache"
     compile("com.zaxxer:HikariCP") {
         exclude(module: 'tools')
     }
@@ -182,10 +184,10 @@ dependencies {
     compile "javax.inject:javax.inject:${javax_inject_version}"
     compile "javax.transaction:javax.transaction-api"
     compile "org.apache.geronimo.javamail:geronimo-javamail_1.4_mail:${geronimo_javamail_1_4_mail_version}"
-    
+
     compile ("org.ehcache:ehcache")
     compile ("org.hibernate:hibernate-jcache:${hibernate_version}")
-    
+
     compile "org.hibernate:hibernate-envers"
     compile "org.hibernate:hibernate-validator"
     compile ("org.liquibase:liquibase-core:${liquibase_core_version}") {
@@ -223,6 +225,9 @@ dependencies {
     compile "org.springframework.social:spring-social-google:${spring_social_google_version}"
     compile "org.springframework.social:spring-social-facebook"
     compile "org.springframework.social:spring-social-twitter"
+    compile "mysql:mysql-connector-java"
+//    compile "com.google.api-client:google-api-client-jackson2:${google-api-client.version}"
+    compile "com.sendgrid:sendgrid-java:2.2.2"
     testCompile "com.jayway.awaitility:awaitility:${awaility_version}"
     testCompile "com.jayway.jsonpath:json-path"
     testCompile "info.cukes:cucumber-junit:${cucumber_version}"
@@ -235,7 +240,7 @@ dependencies {
     testCompile "org.mockito:mockito-core"
     testCompile "com.mattbertolini:liquibase-slf4j:${liquibase_slf4j_version}"
     testCompile "org.hamcrest:hamcrest-library"
-    
+
     optional "org.springframework.boot:spring-boot-configuration-processor:${spring_boot_version}"
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
 }

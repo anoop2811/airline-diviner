@@ -19,13 +19,13 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/airline
+        url: jdbc:mysql://localhost:3306/airline
         name:
         username: airline
         password:
     jpa:
-        database-platform: com.cquent.airline.domain.util.FixedPostgreSQL82Dialect
-        database: POSTGRESQL
+        database-platform: org.hibernate.dialect.MySQLDialect
+        database: MYSQL
         show-sql: false
         properties:
             hibernate.cache.use_second_level_cache: true
@@ -34,6 +34,7 @@ spring:
             hibernate.javax.cache.provider: org.ehcache.jsr107.EhcacheCachingProvider
             hibernate.javax.cache.uri: ${spring.cache.jcache.config}
             hibernate.cache.region.factory_class: com.cquent.airline.config.jcache.SpringCacheRegionFactory
+
     cache:
         jcache:
             config: ehcache.xml
@@ -71,7 +72,7 @@ jhipster:
             # security key (this key should be unique for your application, and kept secret)
             key: 24d91cfdd3bd23b20d069824f4994c4534348171
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: airline@localhost
+        from: sage@airline-unicorn.com
         baseUrl: http://my-server-url-to-change # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true

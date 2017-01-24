@@ -15,12 +15,11 @@
       nextRunDate LocalDate
     }
 
-    entity UserEvents {
-      runDate LocalDate required,
-      fromCity String required,
-      toCity String required,
-      departDate LocalDate required,
-      returnDate LocalDate required
+    entity UserEvent {
+        bestOnwardPath String required,
+        bestReturnPath String required,
+        bestPrice BigDecimal required,
+        runDate LocalDate required
     }
 
 
@@ -28,16 +27,17 @@
       UserPreference{user} to User
     }
     relationship OneToMany {
-      UserPreference{userEventsRelation1} to UserEvents{userPreference}
+      UserPreference{userEvent} to UserEvent{userPreference}
     }
+
     relationship ManyToOne {
-      UserEvents{RunStatus} to RunStatus
+      UserEvent{runStatus} to RunStatus{userEvent}
     }
 
     enum Currency {
       USD, INR
     }
 
-    paginate UserEvents, UserPreference, RunStatus with pagination
+    paginate UserEvent, UserPreference, RunStatus with pagination
 
-    service UserEvents, UserPreference, RunStatus with serviceClass
+    service UserEvent, UserPreference, RunStatus with serviceClass

@@ -5,9 +5,9 @@
         .module('airlineApp')
         .controller('UserPreferenceDetailController', UserPreferenceDetailController);
 
-    UserPreferenceDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'UserPreference', 'UserEvents', 'User'];
+    UserPreferenceDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'UserPreference', 'UserEvent', 'User'];
 
-    function UserPreferenceDetailController($scope, $rootScope, $stateParams, previousState, entity, UserPreference, UserEvents, User) {
+    function UserPreferenceDetailController($scope, $rootScope, $stateParams, previousState, entity, UserPreference, UserEvent, User) {
         var vm = this;
 
         vm.userPreference = entity;

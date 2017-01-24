@@ -10,6 +10,7 @@
                 "runStatus": "Run Status",
                 "userPreference": "User Preference",
                 "userEvents": "User Events",
+                "userEvent": "User Event",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

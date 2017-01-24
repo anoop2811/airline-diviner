@@ -1,0 +1,94 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myUserEventLabel" data-translate="airlineApp.userEvent.home.createOrEditLabel">Create or edit a User Event</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.userEvent.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.userEvent.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userEvent.bestOnwardPath" for="field_bestOnwardPath">Best Onward Path</label>
+            <input type="text" class="form-control" name="bestOnwardPath" id="field_bestOnwardPath"
+                    ng-model="vm.userEvent.bestOnwardPath"
+                    required />
+            <div ng-show="editForm.bestOnwardPath.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.bestOnwardPath.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userEvent.bestReturnPath" for="field_bestReturnPath">Best Return Path</label>
+            <input type="text" class="form-control" name="bestReturnPath" id="field_bestReturnPath"
+                    ng-model="vm.userEvent.bestReturnPath"
+                    required />
+            <div ng-show="editForm.bestReturnPath.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.bestReturnPath.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userEvent.bestPrice" for="field_bestPrice">Best Price</label>
+            <input type="number" class="form-control" name="bestPrice" id="field_bestPrice"
+                    ng-model="vm.userEvent.bestPrice"
+                    required />
+            <div ng-show="editForm.bestPrice.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.bestPrice.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.bestPrice.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userEvent.runDate" for="field_runDate">Run Date</label>
+                <div class="input-group">
+                    <input id="field_runDate" type="text" class="form-control" name="runDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.userEvent.runDate" is-open="vm.datePickerOpenStatus.runDate"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('runDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.runDate.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.runDate.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="airlineApp.userEvent.runStatus" for="field_runStatus">Run Status</label>
+            <select class="form-control" id="field_runStatus" name="runStatus" ng-model="vm.userEvent.runStatus" ng-options="runStatus as runStatus.id for runStatus in vm.runstatuses track by runStatus.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="airlineApp.userEvent.userPreference" for="field_userPreference">User Preference</label>
+            <select class="form-control" id="field_userPreference" name="userPreference" ng-model="vm.userEvent.userPreference" ng-options="userPreference as userPreference.id for userPreference in vm.userpreferences track by userPreference.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

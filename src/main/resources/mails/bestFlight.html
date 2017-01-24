@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{email.bestFlight.title}">Best Flight fare</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <p th:text="#{email.activation.greeting(${user.login})}">
+            Dear
+        </p>
+        <p th:text="#{email.bestFlight.text1}">
+            The best flight option we found for your travel is as follows:
+        </p>
+        <p>
+           Best fare:  <span th:text="${flightOption.price}"></span>
+        </p>
+        <p>
+        	<span> The onward journey: </span>
+			<br/>
+            <span th:text="${flightOption.onwardFlightPath}"></span>
+			<br/>
+			<span> The return journey: </span>
+			<br/>
+            <span th:text="${flightOption.returnFlightPath}"></span>
+        </p>
+        <p>
+            <span th:text="#{email.activation.text2}">Regards, </span>
+			<br/>
+            <em th:text="#{email.signature}">Airline Unicorn.</em>
+        </p>
+    </body>
+</html>

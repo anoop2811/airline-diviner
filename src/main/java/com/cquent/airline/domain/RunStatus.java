@@ -1,11 +1,14 @@
 package com.cquent.airline.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -29,6 +32,11 @@ public class RunStatus implements Serializable {
     @NotNull
     @Column(name = "status_description", nullable = false)
     private String statusDescription;
+
+    @OneToMany(mappedBy = "runStatus")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<UserEvent> userEvents = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -62,6 +70,31 @@ public class RunStatus implements Serializable {
 
     public void setStatusDescription(String statusDescription) {
         this.statusDescription = statusDescription;
+    }
+
+    public Set<UserEvent> getUserEvents() {
+        return userEvents;
+    }
+
+    public RunStatus userEvents(Set<UserEvent> userEvents) {
+        this.userEvents = userEvents;
+        return this;
+    }
+
+    public RunStatus addUserEvent(UserEvent userEvent) {
+        userEvents.add(userEvent);
+        userEvent.setRunStatus(this);
+        return this;
+    }
+
+    public RunStatus removeUserEvent(UserEvent userEvent) {
+        userEvents.remove(userEvent);
+        userEvent.setRunStatus(null);
+        return this;
+    }
+
+    public void setUserEvents(Set<UserEvent> userEvents) {
+        this.userEvents = userEvents;
     }
 
     @Override

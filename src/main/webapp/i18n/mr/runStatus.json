@@ -17,7 +17,8 @@
                 "title": "Run Status"
             },
             "statusCode": "Status Code",
-            "statusDescription": "Status Description"
+            "statusDescription": "Status Description",
+            "userEvent": "User Event"
         }
     }
 }

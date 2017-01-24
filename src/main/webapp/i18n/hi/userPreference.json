@@ -24,7 +24,7 @@
             "threshold": "Threshold",
             "frequency": "Frequency",
             "nextRunDate": "Next Run Date",
-            "userEventsRelation1": "User Events Relation 1",
+            "userEvent": "User Event",
             "user": "User"
         }
     }

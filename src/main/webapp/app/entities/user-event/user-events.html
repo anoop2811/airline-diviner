@@ -1,0 +1,74 @@
+<div>
+    <h2 data-translate="airlineApp.userEvent.home.title">User Events</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="user-event.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="airlineApp.userEvent.home.createLabel">
+                        Create new User Event
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="bestOnwardPath"><span data-translate="airlineApp.userEvent.bestOnwardPath">Best Onward Path</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="bestReturnPath"><span data-translate="airlineApp.userEvent.bestReturnPath">Best Return Path</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="bestPrice"><span data-translate="airlineApp.userEvent.bestPrice">Best Price</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="runDate"><span data-translate="airlineApp.userEvent.runDate">Run Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="runStatus.id"><span data-translate="airlineApp.userEvent.runStatus">Run Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="userPreference.id"><span data-translate="airlineApp.userEvent.userPreference">User Preference</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="userEvent in vm.userEvents track by userEvent.id">
+                    <td><a ui-sref="user-event-detail({id:userEvent.id})">{{userEvent.id}}</a></td>
+                    <td>{{userEvent.bestOnwardPath}}</td>
+                    <td>{{userEvent.bestReturnPath}}</td>
+                    <td>{{userEvent.bestPrice}}</td>
+                        <td>{{userEvent.runDate | date:'mediumDate'}}</td>
+                    <td>
+                        <a ui-sref="run-status-detail({id:userEvent.runStatus.id})">{{userEvent.runStatus.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="user-preference-detail({id:userEvent.userPreference.id})">{{userEvent.userPreference.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="user-event-detail({id:userEvent.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-event.edit({id:userEvent.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-event.delete({id:userEvent.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

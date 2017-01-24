@@ -64,7 +64,7 @@ public class UserPreference implements Serializable {
     @OneToMany(mappedBy = "userPreference")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<UserEvents> userEventsRelation1S = new HashSet<>();
+    private Set<UserEvent> userEvents = new HashSet<>();
 
     @ManyToOne
     private User user;
@@ -181,29 +181,29 @@ public class UserPreference implements Serializable {
         this.nextRunDate = nextRunDate;
     }
 
-    public Set<UserEvents> getUserEventsRelation1S() {
-        return userEventsRelation1S;
+    public Set<UserEvent> getUserEvents() {
+        return userEvents;
     }
 
-    public UserPreference userEventsRelation1S(Set<UserEvents> userEvents) {
-        this.userEventsRelation1S = userEvents;
+    public UserPreference userEvents(Set<UserEvent> userEvents) {
+        this.userEvents = userEvents;
         return this;
     }
 
-    public UserPreference addUserEventsRelation1(UserEvents userEvents) {
-        userEventsRelation1S.add(userEvents);
-        userEvents.setUserPreference(this);
+    public UserPreference addUserEvent(UserEvent userEvent) {
+        userEvents.add(userEvent);
+        userEvent.setUserPreference(this);
         return this;
     }
 
-    public UserPreference removeUserEventsRelation1(UserEvents userEvents) {
-        userEventsRelation1S.remove(userEvents);
-        userEvents.setUserPreference(null);
+    public UserPreference removeUserEvent(UserEvent userEvent) {
+        userEvents.remove(userEvent);
+        userEvent.setUserPreference(null);
         return this;
     }
 
-    public void setUserEventsRelation1S(Set<UserEvents> userEvents) {
-        this.userEventsRelation1S = userEvents;
+    public void setUserEvents(Set<UserEvent> userEvents) {
+        this.userEvents = userEvents;
     }
 
     public User getUser() {

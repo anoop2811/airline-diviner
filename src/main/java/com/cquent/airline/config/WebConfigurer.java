@@ -3,6 +3,10 @@ package com.cquent.airline.config;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.servlet.InstrumentedFilter;
 import com.codahale.metrics.servlets.MetricsServlet;
+import com.cquent.airline.checker.AirlinePriceChecker;
+import com.cquent.airline.checker.GoogleFlightChecker;
+
+import com.cquent.airline.tasks.ScheduledChecker;
 import com.cquent.airline.web.filter.CachingHttpHeadersFilter;
 
 import org.slf4j.Logger;
@@ -10,10 +14,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.embedded.*;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -29,6 +36,7 @@ import javax.servlet.*;
  * Configuration of web application with Servlet 3.0 APIs.
  */
 @Configuration
+@EnableScheduling
 public class WebConfigurer implements ServletContextInitializer, EmbeddedServletContainerCustomizer {
 
     private final Logger log = LoggerFactory.getLogger(WebConfigurer.class);
@@ -165,7 +173,17 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
     }
 
     @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+       return builder.additionalMessageConverters(new MappingJackson2HttpMessageConverter()).build();
+    }
+
+    @Bean
+    public ScheduledChecker scheduledTask() {
+        return  new ScheduledChecker();
+    }
+
+    @Bean
+    public GoogleFlightChecker airlinePriceChecker() {
+        return  new GoogleFlightChecker();
     }
 }

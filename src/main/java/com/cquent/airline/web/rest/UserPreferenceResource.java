@@ -49,6 +49,7 @@ public class UserPreferenceResource {
         if (userPreference.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("userPreference", "idexists", "A new userPreference cannot already have an ID")).body(null);
         }
+
         UserPreference result = userPreferenceService.save(userPreference);
         return ResponseEntity.created(new URI("/api/user-preferences/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("userPreference", result.getId().toString()))

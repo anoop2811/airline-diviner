@@ -5,14 +5,15 @@
         .module('airlineApp')
         .controller('RunStatusDialogController', RunStatusDialogController);
 
-    RunStatusDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'RunStatus'];
+    RunStatusDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'RunStatus', 'UserEvent'];
 
-    function RunStatusDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, RunStatus) {
+    function RunStatusDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, RunStatus, UserEvent) {
         var vm = this;
 
         vm.runStatus = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.userevents = UserEvent.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

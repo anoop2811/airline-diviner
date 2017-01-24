@@ -5,9 +5,9 @@
         .module('airlineApp')
         .controller('UserPreferenceDialogController', UserPreferenceDialogController);
 
-    UserPreferenceDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'UserPreference', 'UserEvents', 'User', 'AirportCities'];
+    UserPreferenceDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'UserPreference', 'UserEvent', 'User', 'AirportCities'];
 
-    function UserPreferenceDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, UserPreference, UserEvents, User, AirportCities) {
+    function UserPreferenceDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, UserPreference, UserEvent, User, AirportCities) {
         var vm = this;
 
         vm.userPreference = entity;
@@ -15,7 +15,7 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
-        vm.userevents = UserEvents.query();
+        vm.userevents = UserEvent.query();
         vm.users = User.query();
         vm.airports = AirportCities.query();
 

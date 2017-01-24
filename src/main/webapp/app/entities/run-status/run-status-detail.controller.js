@@ -5,9 +5,9 @@
         .module('airlineApp')
         .controller('RunStatusDetailController', RunStatusDetailController);
 
-    RunStatusDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'RunStatus'];
+    RunStatusDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'RunStatus', 'UserEvent'];
 
-    function RunStatusDetailController($scope, $rootScope, $stateParams, previousState, entity, RunStatus) {
+    function RunStatusDetailController($scope, $rootScope, $stateParams, previousState, entity, RunStatus, UserEvent) {
         var vm = this;
 
         vm.runStatus = entity;

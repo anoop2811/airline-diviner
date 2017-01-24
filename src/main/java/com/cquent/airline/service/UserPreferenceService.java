@@ -1,16 +1,21 @@
 package com.cquent.airline.service;
 
+import com.cquent.airline.domain.User;
 import com.cquent.airline.domain.UserPreference;
 import com.cquent.airline.repository.UserPreferenceRepository;
+import com.cquent.airline.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.List;
+
 
 /**
  * Service Implementation for managing UserPreference.
@@ -20,9 +25,12 @@ import java.util.List;
 public class UserPreferenceService {
 
     private final Logger log = LoggerFactory.getLogger(UserPreferenceService.class);
-    
+
     @Inject
     private UserPreferenceRepository userPreferenceRepository;
+
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * Save a userPreference.
@@ -32,17 +40,21 @@ public class UserPreferenceService {
      */
     public UserPreference save(UserPreference userPreference) {
         log.debug("Request to save UserPreference : {}", userPreference);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails principal = (UserDetails) auth.getPrincipal();
+        User currentUser = userRepository.findOneByLogin(principal.getUsername()).get();
+        userPreference.setUser(currentUser);
         UserPreference result = userPreferenceRepository.save(userPreference);
         return result;
     }
 
     /**
-     *  Get all the userPreferences.
-     *  
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * Get all the userPreferences.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Page<UserPreference> findAll(Pageable pageable) {
         log.debug("Request to get all UserPreferences");
         Page<UserPreference> result = userPreferenceRepository.findAll(pageable);
@@ -50,12 +62,12 @@ public class UserPreferenceService {
     }
 
     /**
-     *  Get one userPreference by id.
+     * Get one userPreference by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public UserPreference findOne(Long id) {
         log.debug("Request to get UserPreference : {}", id);
         UserPreference userPreference = userPreferenceRepository.findOne(id);
@@ -63,9 +75,9 @@ public class UserPreferenceService {
     }
 
     /**
-     *  Delete the  userPreference by id.
+     * Delete the  userPreference by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(Long id) {
         log.debug("Request to delete UserPreference : {}", id);
