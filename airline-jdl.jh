@@ -12,7 +12,8 @@
       currencyId Currency,
       threshold BigDecimal required,
       frequency Integer min(3) max(7),
-      nextRunDate LocalDate
+      nextRunDate LocalDate,
+      refundable Boolean
     }
 
     entity UserEvent {

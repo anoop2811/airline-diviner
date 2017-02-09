@@ -32,6 +32,14 @@
         <dd>
             <span>{{vm.userPreference.frequency}}</span>
         </dd>
+        <dt><span data-translate="airlineApp.userPreference.nextRunDate">Next Run Date</span></dt>
+        <dd>
+            <span>{{vm.userPreference.nextRunDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="airlineApp.userPreference.refundable">Refundable</span></dt>
+        <dd>
+            <span>{{vm.userPreference.refundable}}</span>
+        </dd>
         <dt><span data-translate="airlineApp.userPreference.user">User</span></dt>
         <dd>
             {{vm.userPreference.user.id}}

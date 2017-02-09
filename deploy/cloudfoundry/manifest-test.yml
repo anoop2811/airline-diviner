@@ -1,0 +1,12 @@
+---
+path: .
+instances: 1
+buildpack: https://github.com/cloudfoundry/java-buildpack
+services:
+- bodha
+applications:
+- name: bodha-test
+  memory: 2048M
+  env:
+    SPRING_PROFILES_ACTIVE: prod, cloudfoundry
+    FEEDBACK_EMAILID: anoop2811@hotmail.com,harisankars@gmail.com

@@ -31,7 +31,7 @@ import java.util.Optional;
 public class UserPreferenceResource {
 
     private final Logger log = LoggerFactory.getLogger(UserPreferenceResource.class);
-
+        
     @Inject
     private UserPreferenceService userPreferenceService;
 
@@ -45,11 +45,10 @@ public class UserPreferenceResource {
     @PostMapping("/user-preferences")
     @Timed
     public ResponseEntity<UserPreference> createUserPreference(@Valid @RequestBody UserPreference userPreference) throws URISyntaxException {
-        log.debug("REST request to save UserPreference");
+        log.debug("REST request to save UserPreference : {}", userPreference);
         if (userPreference.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("userPreference", "idexists", "A new userPreference cannot already have an ID")).body(null);
         }
-
         UserPreference result = userPreferenceService.save(userPreference);
         return ResponseEntity.created(new URI("/api/user-preferences/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("userPreference", result.getId().toString()))
@@ -68,7 +67,7 @@ public class UserPreferenceResource {
     @PutMapping("/user-preferences")
     @Timed
     public ResponseEntity<UserPreference> updateUserPreference(@Valid @RequestBody UserPreference userPreference) throws URISyntaxException {
-        log.debug("REST request to update UserPreference");
+        log.debug("REST request to update UserPreference : {}", userPreference);
         if (userPreference.getId() == null) {
             return createUserPreference(userPreference);
         }

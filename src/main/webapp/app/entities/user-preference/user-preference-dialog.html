@@ -139,6 +139,12 @@
                 </p>
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="airlineApp.userPreference.refundable" for="field_refundable">Refundable</label>
+            <input type="checkbox" class="form-control" name="refundable" id="field_refundable"
+                    ng-model="vm.userPreference.refundable"
+                     />
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

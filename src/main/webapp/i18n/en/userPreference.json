@@ -24,6 +24,7 @@
             "threshold": "Threshold",
             "frequency": "Frequency",
             "nextRunDate": "Next Run Date",
+            "refundable": "Refundable",
             "userEvent": "User Event",
             "user": "User"
         }

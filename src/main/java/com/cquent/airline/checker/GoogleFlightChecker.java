@@ -73,7 +73,13 @@ public class GoogleFlightChecker implements AirlinePriceChecker{
 
         if(response.getTrips() != null && response.getTrips().getTripOption() != null) {
            List<TripOption> tripOptions = response.getTrips().getTripOption();
-           Optional<TripOption> bestPrice =  tripOptions.stream().min((o1 , o2) -> o1.getSaleTotal().compareTo(o2.getSaleTotal()));
+           Optional<TripOption> bestPrice =  tripOptions.stream().min((o1 , o2) -> {
+        	   
+        	   Double sale1 = new Double(o1.getSaleTotal().substring(3));
+        	   Double sale2 = new Double(o2.getSaleTotal().substring(3));
+        	   logger.debug("Comparing sale prices {} and {}", sale1, sale2);
+        	   return sale1.compareTo(sale2);
+           });
            if (bestPrice.isPresent()) {
                TripOption option = bestPrice.get();
                String onwardPath =  appendPath(option.getSlice().get(0).getSegment());
@@ -108,6 +114,7 @@ public class GoogleFlightChecker implements AirlinePriceChecker{
         request.addSlice(onwardSlice);
         request.addSlice(returnSlice);
         request.setMaxPrice(userPreference.getCurrencyId() + String.valueOf(userPreference.getThreshold()));
+        request.setRefundable(userPreference.isRefundable());
 
         QBXRequest qbxRequest = new QBXRequest();
         qbxRequest.setRequest(request);
@@ -121,18 +128,22 @@ public class GoogleFlightChecker implements AirlinePriceChecker{
         StringBuilder path = new StringBuilder();
         if(segments != null ) {
             if (segments.size() > 1) {
-                for (Segment segment : segments) {
+                for (int i = 0; i < segments.size(); i++) {
+                	Segment segment = segments.get(i);
                     path.append(segment.getLeg().get(0).getOrigin());
                     path.append("(");
                     path.append(iataService.getAirline(segment.getFlight().getCarrier()));
                     path.append(")");
                     path.append(" ->");
+                    if(i == segments.size() -1) {       
+                    	path.append(segment.getLeg().get(0).getDestination());
+                    }
                 }
             }
            if (segments.size() == 1) {
                 path.append(segments.get(0).getLeg().get(0).getDestination());
             } else {
-                return path.substring(0, path.length() - 3).toString();
+                return path.substring(0, path.length()).toString();
             }
         }
 
@@ -140,8 +151,6 @@ public class GoogleFlightChecker implements AirlinePriceChecker{
     }
     
     public String getAirline(String code) {
-    	
-    	
     	return code;
     }
 

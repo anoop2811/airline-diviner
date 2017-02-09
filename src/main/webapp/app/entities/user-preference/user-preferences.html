@@ -27,6 +27,7 @@
                     <th jh-sort-by="threshold"><span data-translate="airlineApp.userPreference.threshold">Threshold</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="frequency"><span data-translate="airlineApp.userPreference.frequency">Frequency</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nextRunDate"><span data-translate="airlineApp.userPreference.nextRunDate">Next Run Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="refundable"><span data-translate="airlineApp.userPreference.refundable">Refundable</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="user.id"><span data-translate="airlineApp.userPreference.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -42,6 +43,7 @@
                     <td>{{userPreference.threshold}}</td>
                     <td>{{userPreference.frequency}}</td>
                         <td>{{userPreference.nextRunDate | date:'mediumDate'}}</td>
+                    <td>{{userPreference.refundable}}</td>
                     <td>
                         {{userPreference.user.id}}
                     </td>

@@ -61,6 +61,9 @@ public class UserPreference implements Serializable {
     @Column(name = "next_run_date")
     private LocalDate nextRunDate;
 
+    @Column(name = "refundable")
+    private Boolean refundable;
+
     @OneToMany(mappedBy = "userPreference")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -181,6 +184,19 @@ public class UserPreference implements Serializable {
         this.nextRunDate = nextRunDate;
     }
 
+    public Boolean isRefundable() {
+        return refundable;
+    }
+
+    public UserPreference refundable(Boolean refundable) {
+        this.refundable = refundable;
+        return this;
+    }
+
+    public void setRefundable(Boolean refundable) {
+        this.refundable = refundable;
+    }
+
     public Set<UserEvent> getUserEvents() {
         return userEvents;
     }
@@ -251,6 +267,7 @@ public class UserPreference implements Serializable {
             ", threshold='" + threshold + "'" +
             ", frequency='" + frequency + "'" +
             ", nextRunDate='" + nextRunDate + "'" +
+            ", refundable='" + refundable + "'" +
             '}';
     }
 }

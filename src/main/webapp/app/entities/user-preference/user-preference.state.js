@@ -134,6 +134,7 @@
                                 threshold: null,
                                 frequency: null,
                                 nextRunDate: null,
+                                refundable: null,
                                 id: null
                             };
                         }

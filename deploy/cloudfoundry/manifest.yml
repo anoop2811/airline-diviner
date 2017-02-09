@@ -1,0 +1,13 @@
+---
+path: .
+instances: 1
+buildpack: https://github.com/cloudfoundry/java-buildpack
+services:
+- airline-unicorn
+- bodhaEmail
+applications:
+- name: airline-unicorn 
+  env:
+    SPRING_PROFILES_ACTIVE: prod, cloudfoundry
+    QBX_API_KEY: AIzaSyDXp9NdXjYjdZ_bRIt3ysE-k9GNxIRJLRI
+    IATA_API_KEY: 74b344c2-e3ae-41ed-b590-306c7290ebef

@@ -68,6 +68,10 @@
         {
             "fieldName": "nextRunDate",
             "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "refundable",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20161227184015",

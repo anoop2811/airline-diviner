@@ -3,7 +3,6 @@ package com.cquent.airline.tasks;
 import com.cquent.airline.checker.GoogleFlightChecker;
 import com.cquent.airline.domain.FlightOption;
 import com.cquent.airline.domain.UserEvent;
-import com.cquent.airline.domain.UserEvents;
 import com.cquent.airline.domain.UserPreference;
 import com.cquent.airline.repository.UserEventRepository;
 import com.cquent.airline.repository.UserPreferenceRepository;

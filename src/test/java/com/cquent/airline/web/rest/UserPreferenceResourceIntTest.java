@@ -66,6 +66,9 @@ public class UserPreferenceResourceIntTest {
     private static final LocalDate DEFAULT_NEXT_RUN_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_NEXT_RUN_DATE = LocalDate.now(ZoneId.systemDefault());
 
+    private static final Boolean DEFAULT_REFUNDABLE = false;
+    private static final Boolean UPDATED_REFUNDABLE = true;
+
     @Inject
     private UserPreferenceRepository userPreferenceRepository;
 
@@ -110,7 +113,8 @@ public class UserPreferenceResourceIntTest {
                 .currencyId(DEFAULT_CURRENCY_ID)
                 .threshold(DEFAULT_THRESHOLD)
                 .frequency(DEFAULT_FREQUENCY)
-                .nextRunDate(DEFAULT_NEXT_RUN_DATE);
+                .nextRunDate(DEFAULT_NEXT_RUN_DATE)
+                .refundable(DEFAULT_REFUNDABLE);
         return userPreference;
     }
 
@@ -143,6 +147,7 @@ public class UserPreferenceResourceIntTest {
         assertThat(testUserPreference.getThreshold()).isEqualTo(DEFAULT_THRESHOLD);
         assertThat(testUserPreference.getFrequency()).isEqualTo(DEFAULT_FREQUENCY);
         assertThat(testUserPreference.getNextRunDate()).isEqualTo(DEFAULT_NEXT_RUN_DATE);
+        assertThat(testUserPreference.isRefundable()).isEqualTo(DEFAULT_REFUNDABLE);
     }
 
     @Test
@@ -273,7 +278,8 @@ public class UserPreferenceResourceIntTest {
             .andExpect(jsonPath("$.[*].currencyId").value(hasItem(DEFAULT_CURRENCY_ID.toString())))
             .andExpect(jsonPath("$.[*].threshold").value(hasItem(DEFAULT_THRESHOLD.intValue())))
             .andExpect(jsonPath("$.[*].frequency").value(hasItem(DEFAULT_FREQUENCY)))
-            .andExpect(jsonPath("$.[*].nextRunDate").value(hasItem(DEFAULT_NEXT_RUN_DATE.toString())));
+            .andExpect(jsonPath("$.[*].nextRunDate").value(hasItem(DEFAULT_NEXT_RUN_DATE.toString())))
+            .andExpect(jsonPath("$.[*].refundable").value(hasItem(DEFAULT_REFUNDABLE.booleanValue())));
     }
 
     @Test
@@ -294,7 +300,8 @@ public class UserPreferenceResourceIntTest {
             .andExpect(jsonPath("$.currencyId").value(DEFAULT_CURRENCY_ID.toString()))
             .andExpect(jsonPath("$.threshold").value(DEFAULT_THRESHOLD.intValue()))
             .andExpect(jsonPath("$.frequency").value(DEFAULT_FREQUENCY))
-            .andExpect(jsonPath("$.nextRunDate").value(DEFAULT_NEXT_RUN_DATE.toString()));
+            .andExpect(jsonPath("$.nextRunDate").value(DEFAULT_NEXT_RUN_DATE.toString()))
+            .andExpect(jsonPath("$.refundable").value(DEFAULT_REFUNDABLE.booleanValue()));
     }
 
     @Test
@@ -323,7 +330,8 @@ public class UserPreferenceResourceIntTest {
                 .currencyId(UPDATED_CURRENCY_ID)
                 .threshold(UPDATED_THRESHOLD)
                 .frequency(UPDATED_FREQUENCY)
-                .nextRunDate(UPDATED_NEXT_RUN_DATE);
+                .nextRunDate(UPDATED_NEXT_RUN_DATE)
+                .refundable(UPDATED_REFUNDABLE);
 
         restUserPreferenceMockMvc.perform(put("/api/user-preferences")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -342,6 +350,7 @@ public class UserPreferenceResourceIntTest {
         assertThat(testUserPreference.getThreshold()).isEqualTo(UPDATED_THRESHOLD);
         assertThat(testUserPreference.getFrequency()).isEqualTo(UPDATED_FREQUENCY);
         assertThat(testUserPreference.getNextRunDate()).isEqualTo(UPDATED_NEXT_RUN_DATE);
+        assertThat(testUserPreference.isRefundable()).isEqualTo(UPDATED_REFUNDABLE);
     }
 
     @Test

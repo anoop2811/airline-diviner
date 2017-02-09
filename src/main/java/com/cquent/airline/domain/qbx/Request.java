@@ -29,7 +29,7 @@ public class Request {
     @JsonProperty("solutions")
     private Integer solutions = 20;
     @JsonProperty("refundable")
-    private Boolean refundable = true;
+    private Boolean refundable;
     @JsonProperty("maxPrice")
     private String maxPrice;
 
